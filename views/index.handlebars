@@ -1,34 +1,44 @@
-<h1>Eat-Da_Burger</h1>
-
-<h2>Available Burgers</h2>
-<ul>
-  {{#each burgers}}
-  {{#unless devoured}}
-  <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
-  <button type="button" class="eatburger btn btn-warning" id ="eatbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-cutlery"></span></button>
-  <hr>
-  {{/unless}}
-  {{/each}}
-</ul>
-
-
- <ul>
-    {{#each burgers}}
-    {{#if devoured}}
-    <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
-    <button type="button" class="trashburger btn btn-danger" id ="trashbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
-    <hr>
-    {{/if}}
-    {{/each}}
-  </ul>
-
-
+<div class="text-center">
+<h1>Nom Nom Burgers</h1>
+<img src= "assets\images\burger.jpeg" alt="burger" height="300" width="300">
+<br/>
+<br/>
 <form class="create-form">
 
   <div class="form-group">
-    <label for="newburger">Enter the burger you would like to eat</label>
-    <input type="text" id="newburger" name="burger">
+    <label for="newBurger">Enter the burger you would like to eat:</label>
+    <input type="text" id="newBurger" name="burger">
   </div>
 
-  <button type="submit">Submit</button>
+  <button id="submit_button" type="submit"><i class="fas fa-hamburger"></i> Submit</button>
 </form>
+</div>
+<p></p>
+<div class="row">
+<div class="col-md-6">
+<h2>Available Burgers</h2>
+  {{#each burger}}
+  {{#unless this.devoured}}
+  	<div class="row">
+      <div class="col-sm px-md-5">
+					{{this.id}}. {{this.burger_name}}
+          
+  <button class="eatburger btn btn-danger" data-id="{{this.id}}" data-devoured="{{this.devoured}}"><span class="fas fa-utensils"> Devour it!</span></button>
+  <br/><br/>
+  </div>
+  </div>
+  {{/unless}}
+  {{/each}}
+
+</div>
+
+<div class="col-md-6">
+   <h2>Burgers Eaten </h2>
+    {{#each burger}}
+    {{#if this.devoured}}
+        <input class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}">
+                
+    {{/if}}
+    {{/each}}
+</div>
+</div>
